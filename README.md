@@ -1,2 +1,2 @@
-# IAMSA-Webste
+# IAMSA-Website
 IAMSA Official Website
