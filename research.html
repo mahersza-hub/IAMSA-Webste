@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Research — IAMSA</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#040812;--surface:#080f1f;--card:#0c1528;--border:#1a2a4a;--accent:#00d4ff;--accent2:#7b4fff;--accent3:#00ff9d;--text:#e8f0ff;--muted:#6a7fa8;--white:#ffffff;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(4,8,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em;display:flex;flex-direction:column;line-height:1.1;text-decoration:none;color:var(--text);}
+  .logo span{color:var(--accent);}
+  .logo-sub{font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif;}
+  nav ul{display:flex;gap:40px;list-style:none;}
+  nav ul a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
+  nav ul a:hover,nav ul a.active{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:var(--bg)!important;padding:10px 24px;border-radius:4px;font-weight:500!important;transition:all 0.2s!important;}
+  .nav-cta:hover{background:var(--white)!important;color:var(--bg)!important;}
+  .page-hero{position:relative;padding:160px 60px 80px;z-index:1;}
+  .page-hero-glow{position:absolute;top:-100px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(123,79,255,0.1) 0%,transparent 70%);pointer-events:none;}
+  .section-tag{display:inline-block;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;}
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:24px;}
+  h1 .grad{background:linear-gradient(90deg,var(--accent2),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px;}
+  h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:8px;}
+  .hero-sub{font-size:1.15rem;line-height:1.7;color:var(--muted);max-width:620px;}
+  section{position:relative;z-index:1;padding:80px 60px;}
+  .surface{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .section-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:48px;}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px 28px;transition:all 0.3s;}
+  .card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+  .card-icon{font-size:1.8rem;margin-bottom:14px;}
+  .card p{font-size:0.88rem;color:var(--muted);line-height:1.7;margin-top:8px;}
+  .tag{background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15);color:var(--accent);padding:4px 12px;border-radius:100px;font-size:0.75rem;display:inline-block;margin:4px 4px 0 0;}
+  .tag.purple{background:rgba(123,79,255,0.08);border-color:rgba(123,79,255,0.15);color:var(--accent2);}
+  .tag.green{background:rgba(0,255,157,0.08);border-color:rgba(0,255,157,0.15);color:var(--accent3);}
+  .opportunity-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px;margin-bottom:20px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;transition:border-color 0.2s;}
+  .opportunity-card:hover{border-color:rgba(0,212,255,0.3);}
+  .opp-type{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;font-weight:500;}
+  .opp-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:8px;}
+  .opp-desc{font-size:0.88rem;color:var(--muted);line-height:1.7;margin-bottom:14px;}
+  .opp-reqs{display:flex;flex-direction:column;gap:6px;margin-top:12px;}
+  .opp-req{font-size:0.8rem;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .opp-req::before{content:'✓';color:var(--accent3);font-weight:700;}
+  .btn-sm{display:inline-flex;align-items:center;gap:6px;background:var(--accent);color:var(--bg);padding:10px 22px;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.85rem;transition:all 0.2s;align-self:flex-start;white-space:nowrap;}
+  .btn-sm:hover{background:var(--white);}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px;transition:all 0.3s;position:relative;overflow:hidden;}
+  .project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .project-card:nth-child(1)::before{background:var(--accent);}
+  .project-card:nth-child(2)::before{background:var(--accent2);}
+  .project-card:nth-child(3)::before{background:var(--accent3);}
+  .project-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+  .project-status{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;margin-bottom:10px;}
+  .status-active{color:var(--accent3);}
+  .status-forming{color:var(--accent);}
+  .project-card p{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-top:8px;}
+  .step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;}
+  .step{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:28px;text-align:center;transition:all 0.3s;}
+  .step:hover{border-color:rgba(0,212,255,0.3);}
+  .step-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--accent);margin-bottom:12px;}
+  .step p{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-top:8px;}
+  .btn-primary{background:var(--accent);color:var(--bg);padding:16px 36px;border-radius:4px;text-decoration:none;font-weight:500;font-size:1rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-primary:hover{background:var(--white);transform:translateY(-2px);}
+  footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;}
+  .footer-logo span{color:var(--accent);}
+  .footer-text{font-size:0.8rem;color:var(--muted);}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+  @media(max-width:900px){nav{padding:16px 24px;}nav ul{gap:20px;}nav ul a{font-size:0.75rem;}h1{font-size:2.4rem;}.grid-3{grid-template-columns:1fr 1fr;}.grid-2{grid-template-columns:1fr;}.step-grid{grid-template-columns:1fr 1fr;}.opportunity-card{grid-template-columns:1fr;}section{padding:60px 24px;}.page-hero{padding:130px 24px 60px;}}
+  @media(max-width:600px){nav ul{display:none;}.grid-3{grid-template-columns:1fr;}.step-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">IAMSA<span>.</span><div class="logo-sub">Intl. Association of Medical Students in AI</div></a>
+  <ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/education">Education</a></li>
+    <li><a href="/events">Events</a></li>
+    <li><a href="/research" class="active">Research</a></li>
+    <li><a href="/chapters">Chapters</a></li>
+    <li><a href="/news">News</a></li>
+    <li><a href="/mentorship">Mentorship</a></li>
+    <li><a href="/join" class="nav-cta">Join IAMSA</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <span class="section-tag">Research</span>
+  <h1>Do research.<br><span class="grad">Get published.</span></h1>
+  <p class="hero-sub">Open research opportunities, collaborative projects, published outputs, and pathways to get your name on AI in medicine publications as a medical student.</p>
+</div>
+
+<!-- OPPORTUNITIES -->
+<section class="surface">
+  <span class="section-tag reveal">Open Opportunities</span>
+  <h2 class="reveal">Current research openings.</h2>
+  <p class="section-sub reveal">IAMSA connects medical students to real research opportunities — systematic reviews, primary research, and collaborative publications.</p>
+
+  <div class="opportunity-card reveal">
+    <div>
+      <div class="opp-type">Systematic Review · Open for Recruitment</div>
+      <div class="opp-title">AI in UK Medical Education: A National Needs Assessment</div>
+      <div class="opp-desc">The first large-scale survey of AI education in UK medical schools — assessing curriculum content, student preparedness, and faculty attitudes. Target publication: Student BMJ or Medical Education journal. Named authorship for all contributors.</div>
+      <div style="margin-top:12px;"><span class="tag">Survey Design</span><span class="tag">Medical Education</span><span class="tag green">Named Authorship</span></div>
+      <div class="opp-reqs">
+        <div class="opp-req">Medical student at any UK medical school</div>
+        <div class="opp-req">Commitment of 3–5 hours for data collection phase</div>
+        <div class="opp-req">No prior research experience required</div>
+      </div>
+    </div>
+    <a href="/join" class="btn-sm">Apply →</a>
+  </div>
+
+  <div class="opportunity-card reveal">
+    <div>
+      <div class="opp-type">Systematic Review · Open for Recruitment</div>
+      <div class="opp-title">Clinical Performance of AI vs. Clinician in Diagnostic Radiology: Systematic Review</div>
+      <div class="opp-desc">A PRISMA-compliant systematic review of all published RCTs and observational studies comparing AI diagnostic performance to radiologists. TRIPOD+AI methodology. Target: Radiology or Lancet Digital Health.</div>
+      <div style="margin-top:12px;"><span class="tag">Radiology</span><span class="tag">Systematic Review</span><span class="tag purple">TRIPOD+AI</span><span class="tag green">Named Authorship</span></div>
+      <div class="opp-reqs">
+        <div class="opp-req">Interest in radiology or diagnostic imaging</div>
+        <div class="opp-req">Willing to learn systematic review methodology</div>
+        <div class="opp-req">Commitment of 4–6 hours/month for 3 months</div>
+      </div>
+    </div>
+    <a href="/join" class="btn-sm">Apply →</a>
+  </div>
+
+  <div class="opportunity-card reveal">
+    <div>
+      <div class="opp-type">Primary Research · Forming Team</div>
+      <div class="opp-title">Student AI Literacy Survey: International Multi-Centre Study</div>
+      <div class="opp-desc">Multi-centre cross-sectional study across IAMSA chapters internationally — assessing AI knowledge, confidence, and training needs in medical students. Coordination across UK, Ireland, and USA cohorts. Target: multiple journals per cohort.</div>
+      <div style="margin-top:12px;"><span class="tag">International</span><span class="tag">Cross-Sectional</span><span class="tag green">Named Authorship</span></div>
+      <div class="opp-reqs">
+        <div class="opp-req">Any IAMSA member (UK or international)</div>
+        <div class="opp-req">Coordinate data collection at your institution</div>
+        <div class="opp-req">Ethics application support provided by IAMSA</div>
+      </div>
+    </div>
+    <a href="/join" class="btn-sm">Apply →</a>
+  </div>
+</section>
+
+<!-- CURRENT PROJECTS -->
+<section>
+  <span class="section-tag reveal">Current Projects</span>
+  <h2 class="reveal">What IAMSA is working on.</h2>
+  <div class="grid-3">
+    <div class="project-card reveal">
+      <div class="project-status status-active">● Active</div>
+      <h3>AI in UK Medical Education — Needs Assessment</h3>
+      <p>National survey of medical students and faculty across UK medical schools. First data collection wave: June–September 2026.</p>
+      <div style="margin-top:14px;"><span class="tag">Survey</span><span class="tag green">Recruiting</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-status status-forming">● Forming</div>
+      <h3>Radiology AI Performance Systematic Review</h3>
+      <p>PRISMA-compliant review of all peer-reviewed studies comparing AI to radiologist diagnostic performance. Team forming now.</p>
+      <div style="margin-top:14px;"><span class="tag">Systematic Review</span><span class="tag green">Open</span></div>
+    </div>
+    <div class="project-card reveal">
+      <div class="project-status status-forming">● Forming</div>
+      <h3>International Student AI Literacy Study</h3>
+      <p>Multi-centre cross-sectional study. Coordinating across IAMSA chapters in the UK, Ireland, and internationally.</p>
+      <div style="margin-top:14px;"><span class="tag">International</span><span class="tag green">Open</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATIONS -->
+<section class="surface">
+  <span class="section-tag reveal">Published Outputs</span>
+  <h2 class="reveal">IAMSA publications.</h2>
+  <p class="section-sub reveal">Peer-reviewed publications, preprints, and position statements from the IAMSA research network.</p>
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:48px;text-align:center;" class="reveal">
+    <div style="font-size:2.5rem;margin-bottom:16px;">📄</div>
+    <h3>Publications will appear here as work is completed.</h3>
+    <p style="font-size:0.88rem;color:var(--muted);max-width:420px;margin:12px auto 28px;line-height:1.7;">First IAMSA publications are expected from Q4 2026 onwards. Join the research working group to contribute.</p>
+    <a href="/join" class="btn-sm" style="background:var(--accent);color:var(--bg);padding:12px 28px;border-radius:4px;text-decoration:none;font-weight:500;display:inline-flex;align-items:center;gap:8px;">Join Research Working Group →</a>
+  </div>
+</section>
+
+<!-- HOW TO JOIN -->
+<section>
+  <span class="section-tag reveal">Join the Research Working Group</span>
+  <h2 class="reveal">How to get involved.</h2>
+  <p class="section-sub reveal">No research experience required. The IAMSA research working group mentors students through every stage — from project design to submission.</p>
+  <div class="step-grid">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3>Join IAMSA</h3>
+      <p>Sign up free at iamsa.org/join. All medical students and junior doctors are eligible.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3>Apply to the Working Group</h3>
+      <p>Select your research interests and availability. No prior experience needed — just commitment and curiosity.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3>Get Matched to a Project</h3>
+      <p>You'll be matched to an active IAMSA research project based on your interests, year, and time availability.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h3>Publish with Support</h3>
+      <p>IAMSA advisors guide you through the research process. Named authorship on all qualifying contributions.</p>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <a href="/join" class="btn-primary">Apply to Research Working Group →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo"><span>IAMSA</span> · International Association of Medical Students in AI</div>
+  <div class="footer-text">Founded 2026 · University of Sunderland · contact@iamsa.org</div>
+</footer>
+<script>
+  const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),100);observer.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

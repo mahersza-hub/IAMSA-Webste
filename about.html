@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — IAMSA</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#040812;--surface:#080f1f;--card:#0c1528;--border:#1a2a4a;--accent:#00d4ff;--accent2:#7b4fff;--accent3:#00ff9d;--text:#e8f0ff;--muted:#6a7fa8;--white:#ffffff; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(4,8,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em;display:flex;flex-direction:column;line-height:1.1;text-decoration:none;color:var(--text);}
+  .logo span{color:var(--accent);}
+  .logo-sub{font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif;}
+  nav ul{display:flex;gap:40px;list-style:none;}
+  nav ul a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
+  nav ul a:hover{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:var(--bg)!important;padding:10px 24px;border-radius:4px;font-weight:500!important;transition:all 0.2s!important;}
+  .nav-cta:hover{background:var(--white)!important;color:var(--bg)!important;}
+  .page-hero{position:relative;padding:160px 60px 80px;z-index:1;}
+  .page-hero-glow{position:absolute;top:-100px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,0.1) 0%,transparent 70%);pointer-events:none;}
+  .section-tag{display:inline-block;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;}
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:24px;}
+  h1 .line2{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px;}
+  h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:var(--white);margin-bottom:10px;}
+  .hero-sub{font-size:1.15rem;line-height:1.7;color:var(--muted);max-width:620px;}
+  section{position:relative;z-index:1;padding:80px 60px;}
+  .surface{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .section-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:48px;}
+  .stat-row{display:flex;gap:48px;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid var(--border);}
+  .stat-item .stat-number{font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--white);letter-spacing:-0.03em;}
+  .stat-item .stat-number span{color:var(--accent);}
+  .stat-item .stat-label{font-size:0.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px 28px;transition:all 0.3s;}
+  .card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+  .card-icon{font-size:1.8rem;margin-bottom:14px;}
+  .card p{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;}
+  .team-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:32px 24px;text-align:center;transition:all 0.3s;}
+  .team-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+  .team-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--bg);}
+  .team-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:6px;}
+  .team-role{font-size:0.8rem;color:var(--accent);margin-bottom:8px;}
+  .team-school{font-size:0.78rem;color:var(--muted);}
+  .evidence-block{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:40px;margin-top:48px;}
+  .evidence-block p{font-size:1rem;line-height:1.8;color:var(--muted);margin-bottom:16px;}
+  .evidence-block p:last-child{margin-bottom:0;}
+  .evidence-block strong{color:var(--text);font-weight:500;}
+  .timeline{position:relative;margin-top:48px;}
+  .timeline::before{content:'';position:absolute;left:24px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--accent),var(--accent2),transparent);}
+  .tl-item{display:flex;gap:40px;margin-bottom:40px;align-items:flex-start;}
+  .tl-marker{width:48px;height:48px;border-radius:50%;background:var(--card);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;color:var(--accent);flex-shrink:0;position:relative;z-index:1;}
+  .tl-content{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;flex:1;}
+  .tl-date{font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:500;}
+  .tl-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:8px;}
+  .tl-desc{font-size:0.88rem;color:var(--muted);line-height:1.7;}
+  .btn-primary{background:var(--accent);color:var(--bg);padding:16px 36px;border-radius:4px;text-decoration:none;font-weight:500;font-size:1rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-primary:hover{background:var(--white);transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,212,255,0.25);}
+  .btn-secondary{background:transparent;color:var(--text);padding:16px 36px;border-radius:4px;text-decoration:none;font-weight:400;font-size:1rem;border:1px solid var(--border);transition:all 0.2s;}
+  .btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .cta-strip{text-align:center;padding:80px 60px;}
+  footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;}
+  .footer-logo span{color:var(--accent);}
+  .footer-text{font-size:0.8rem;color:var(--muted);}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+  ::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+  @media(max-width:900px){nav{padding:16px 24px;}nav ul{gap:20px;}nav ul a{font-size:0.75rem;}h1{font-size:2.4rem;}.two-col{grid-template-columns:1fr;gap:40px;}.card-grid{grid-template-columns:1fr 1fr;}.team-grid{grid-template-columns:1fr 1fr;}.stat-row{gap:28px;}section{padding:60px 24px;}.page-hero{padding:130px 24px 60px;}}
+  @media(max-width:600px){nav ul{display:none;}.card-grid{grid-template-columns:1fr;}.team-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">IAMSA<span>.</span><div class="logo-sub">Intl. Association of Medical Students in AI</div></a>
+  <ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/education">Education</a></li>
+    <li><a href="/events">Events</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/chapters">Chapters</a></li>
+    <li><a href="/news">News</a></li>
+    <li><a href="/mentorship">Mentorship</a></li>
+    <li><a href="/join" class="nav-cta">Join IAMSA</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <span class="section-tag">About IAMSA</span>
+  <h1>Why we exist.<br><span class="line2">The gap we fill.</span></h1>
+  <p class="hero-sub">Founded in 2026 at the University of Sunderland, IAMSA is the first student-led, clinically-grounded AI society for medical students and doctors worldwide.</p>
+  <div class="stat-row">
+    <div class="stat-item"><div class="stat-number">75<span>%</span></div><div class="stat-label">Students — No AI Training</div></div>
+    <div class="stat-item"><div class="stat-number">78<span>%</span></div><div class="stat-label">Rise in Clinician AI Use in 1 Year</div></div>
+    <div class="stat-item"><div class="stat-number">£150<span>M+</span></div><div class="stat-label">NHS AI Lab Investment</div></div>
+    <div class="stat-item"><div class="stat-number">45<span>+</span></div><div class="stat-label">UK Medical Schools</div></div>
+  </div>
+</div>
+
+<!-- THE GAP -->
+<section class="surface">
+  <div class="two-col">
+    <div>
+      <span class="section-tag reveal">The Problem</span>
+      <h2 class="reveal">Medicine is changing.<br>Students aren't prepared.</h2>
+      <p class="section-sub reveal" style="margin-bottom:20px;">Over <strong style="color:var(--text);">75% of medical students receive no formal AI education</strong> in their curriculum. Meanwhile, 2 in 3 physicians now use AI in clinical practice.</p>
+      <p class="reveal" style="font-size:1rem;color:var(--muted);line-height:1.8;margin-bottom:16px;">The NHS has invested over <strong style="color:var(--text);">£150 million through the NHS AI Lab</strong>. Regulatory frameworks are evolving. Clinical AI tools are in wards, radiology suites, and pathology labs — right now.</p>
+      <p class="reveal" style="font-size:1rem;color:var(--muted);line-height:1.8;">IAMSA exists to close this gap. <strong style="color:var(--text);">Clinically grounded, peer-delivered, internationally connected.</strong> Not a tech club. Not a theory society.</p>
+    </div>
+    <div class="evidence-block reveal">
+      <p><strong>The Lancet Digital Health (2023)</strong> found that 72% of final-year medical students felt unprepared to use AI tools in clinical practice, despite 61% already encountering them on placements.</p>
+      <p><strong>NHS England (2024)</strong> confirmed that AI-assisted diagnosis is now active in over 50 NHS trusts, covering radiology, pathology, cardiology, and dermatology.</p>
+      <p><strong>GMC Tomorrow's Doctors</strong> is being updated to include digital literacy competencies — making AI fluency a graduate requirement within the next curriculum cycle.</p>
+      <p><strong>IFMSA Global Survey (2024)</strong> found that fewer than 8% of medical schools globally have a dedicated AI curriculum module, despite 78% of surveyed students expressing strong demand.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section>
+  <span class="section-tag reveal">Our Model</span>
+  <h2 class="reveal">Built differently<br>from the ground up.</h2>
+  <div class="card-grid">
+    <div class="card reveal">
+      <div class="card-icon">🎯</div>
+      <h3>Clinically Grounded</h3>
+      <p>Every workshop, lecture, and resource is framed around real clinical scenarios — radiology AI, diagnostic algorithms, and NHS-deployed tools. Not abstract theory.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🌍</div>
+      <h3>International by Design</h3>
+      <p>Chapter model built for global scale from day one — UK, Ireland, USA, Australia, Canada, Germany, Singapore, and beyond. Connected, not siloed.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🔬</div>
+      <h3>Research Connected</h3>
+      <p>Members access AI research opportunities, collaborate on systematic reviews, and gain named authorship on IAMSA publications. A real research pathway.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">🏥</div>
+      <h3>NHS & GMC Aligned</h3>
+      <p>Building toward formal recognition as AI literacy becomes a GMC graduate competency. All content aligns with NHS AI Lab frameworks and NICE guidance.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">👥</div>
+      <h3>Peer-to-Peer Delivery</h3>
+      <p>Regional leads deliver content at their own institutions — making AI education locally relevant and immediately actionable. Supported by the national committee.</p>
+    </div>
+    <div class="card reveal">
+      <div class="card-icon">📋</div>
+      <h3>CPD Accredited</h3>
+      <p>All IAMSA conferences and major events are CPD accredited. Every webinar comes with a certificate of attendance. Recognised learning from day one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDING STORY -->
+<section class="surface">
+  <span class="section-tag reveal">The Story</span>
+  <h2 class="reveal">How IAMSA began.</h2>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-marker">1</div>
+      <div class="tl-content">
+        <div class="tl-date">Early 2026</div>
+        <div class="tl-title">The Gap Becomes Clear</div>
+        <div class="tl-desc">Maher Nassor, a 2nd year medical student at the University of Sunderland, began encountering AI tools on clinical placements with no formal training. Conversations with peers nationally confirmed this was universal — not isolated. Research confirmed that fewer than 8% of UK medical schools had any AI curriculum component.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-marker">2</div>
+      <div class="tl-content">
+        <div class="tl-date">Spring 2026</div>
+        <div class="tl-title">IAMSA Is Founded</div>
+        <div class="tl-desc">IAMSA is established as the International Association of Medical Students in AI — the first student-led society dedicated entirely to AI in clinical medicine. The four pillars are defined: Education, Research, Conferences, and Mentorship. The chapter model is architected for global scale.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-marker">3</div>
+      <div class="tl-content">
+        <div class="tl-date">June 2026</div>
+        <div class="tl-title">National Launch</div>
+        <div class="tl-desc">IAMSA officially launches across the UK with regional leads confirmed at medical schools nationwide. The first national webinar series begins, covering AI in radiology, pathology, cardiology, and primary care. The IAMSA website goes live as the national hub for members, resources, and opportunities.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-marker">4</div>
+      <div class="tl-content">
+        <div class="tl-date">Late 2026</div>
+        <div class="tl-title">First National Conference</div>
+        <div class="tl-desc">The inaugural IAMSA National Conference is hosted — CPD accredited, with abstract submissions, keynote clinicians and AI researchers, and an industry exhibition. International pilot chapters launch in Ireland, USA, and Australia. The first IAMSA needs assessment survey on AI in UK medical education is published.</div>
+      </div>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-marker">5</div>
+      <div class="tl-content">
+        <div class="tl-date">2027 Onwards</div>
+        <div class="tl-title">International Scale</div>
+        <div class="tl-desc">Full international chapter network. Annual International Medical AI Symposium. GMC curriculum consultation contribution. Position statement on AI in medical education. Industry partnership programme generating student research funding worldwide.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <span class="section-tag reveal">The Team</span>
+  <h2 class="reveal">Built by medical<br>students, for medicine.</h2>
+  <p class="section-sub reveal">IAMSA is led by medical students who believe AI literacy is a clinical competency — not an optional extra.</p>
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">MN</div>
+      <div class="team-name">Maher Nassor</div>
+      <div class="team-role">President & Founder</div>
+      <div class="team-school">University of Sunderland</div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Vice President</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Research Lead</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Education Lead</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Events Lead</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Communications Lead</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">International Liaison</div>
+      <div class="team-role">Open — Apply Now</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">—</div>
+      <div class="team-name">Clinical Advisor</div>
+      <div class="team-role">Advisory Panel — Open</div>
+      <div class="team-school"><a href="/join" style="color:var(--accent);text-decoration:none;">iamsa.org/join</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-strip surface" style="border-bottom:none;">
+  <span class="section-tag reveal">Get Involved</span>
+  <h2 class="reveal" style="margin-bottom:16px;">Join IAMSA today.</h2>
+  <p style="color:var(--muted);margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;font-size:1.05rem;line-height:1.7;" class="reveal">Membership is free for all medical students and junior doctors worldwide.</p>
+  <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;" class="reveal">
+    <a href="/join" class="btn-primary">Join IAMSA →</a>
+    <a href="/chapters" class="btn-secondary">Find Your Chapter</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo"><span>IAMSA</span> · International Association of Medical Students in AI</div>
+  <div class="footer-text">Founded 2026 · University of Sunderland · contact@iamsa.org</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),100); observer.unobserve(e.target); } });
+  }, {threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

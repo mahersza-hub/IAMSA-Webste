@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News & Blog — IAMSA</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#040812;--surface:#080f1f;--card:#0c1528;--border:#1a2a4a;--accent:#00d4ff;--accent2:#7b4fff;--accent3:#00ff9d;--text:#e8f0ff;--muted:#6a7fa8;--white:#ffffff;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 60px;display:flex;justify-content:space-between;align-items:center;background:rgba(4,8,18,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.02em;display:flex;flex-direction:column;line-height:1.1;text-decoration:none;color:var(--text);}
+  .logo span{color:var(--accent);}
+  .logo-sub{font-size:0.5rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);font-weight:400;font-family:'DM Sans',sans-serif;}
+  nav ul{display:flex;gap:40px;list-style:none;}
+  nav ul a{color:var(--muted);text-decoration:none;font-size:0.9rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;transition:color 0.2s;}
+  nav ul a:hover,nav ul a.active{color:var(--accent);}
+  .nav-cta{background:var(--accent);color:var(--bg)!important;padding:10px 24px;border-radius:4px;font-weight:500!important;transition:all 0.2s!important;}
+  .nav-cta:hover{background:var(--white)!important;color:var(--bg)!important;}
+  .page-hero{position:relative;padding:160px 60px 80px;z-index:1;}
+  .page-hero-glow{position:absolute;top:-100px;left:-100px;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,0.1) 0%,transparent 70%);pointer-events:none;}
+  .section-tag{display:inline-block;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-weight:500;}
+  h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,5vw,4.5rem);line-height:1.0;letter-spacing:-0.03em;margin-bottom:24px;}
+  h1 .grad{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:-0.03em;line-height:1.1;margin-bottom:20px;}
+  h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;color:var(--white);margin-bottom:8px;}
+  .hero-sub{font-size:1.15rem;line-height:1.7;color:var(--muted);max-width:620px;}
+  section{position:relative;z-index:1;padding:80px 60px;}
+  .surface{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .section-sub{font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:580px;margin-bottom:48px;}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+  .blog-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:all 0.3s;}
+  .blog-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px);}
+  .blog-img{height:160px;background:linear-gradient(135deg,rgba(0,212,255,0.1),rgba(123,79,255,0.1));display:flex;align-items:center;justify-content:center;font-size:3rem;border-bottom:1px solid var(--border);}
+  .blog-body{padding:28px;}
+  .blog-tag{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:500;}
+  .blog-date{font-size:0.78rem;color:var(--muted);margin-top:12px;}
+  .blog-excerpt{font-size:0.85rem;color:var(--muted);line-height:1.7;margin-top:8px;}
+  .newsletter-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:28px;display:flex;align-items:center;gap:24px;margin-bottom:14px;transition:border-color 0.2s;}
+  .newsletter-card:hover{border-color:rgba(0,212,255,0.3);}
+  .nl-icon{width:56px;height:56px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+  .nl-month{font-family:'Syne',sans-serif;font-weight:700;font-size:0.95rem;color:var(--white);margin-bottom:4px;}
+  .nl-meta{font-size:0.8rem;color:var(--muted);}
+  .nl-action{margin-left:auto;font-size:0.8rem;color:var(--accent);text-decoration:none;font-weight:500;border:1px solid rgba(0,212,255,0.2);padding:8px 16px;border-radius:4px;flex-shrink:0;transition:all 0.2s;}
+  .nl-action:hover{background:rgba(0,212,255,0.1);}
+  .press-row{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-bottom:12px;display:flex;align-items:center;gap:20px;transition:border-color 0.2s;}
+  .press-row:hover{border-color:rgba(0,212,255,0.3);}
+  .press-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:0.8rem;color:var(--accent);background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.15);padding:6px 12px;border-radius:4px;flex-shrink:0;min-width:100px;text-align:center;}
+  .press-title{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--white);margin-bottom:4px;}
+  .press-meta{font-size:0.78rem;color:var(--muted);}
+  .subscribe-box{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(123,79,255,0.06));border:1px solid rgba(0,212,255,0.2);border-radius:12px;padding:48px;text-align:center;margin-top:48px;}
+  .subscribe-box h3{font-size:1.4rem;margin-bottom:10px;}
+  .subscribe-box p{font-size:0.95rem;color:var(--muted);max-width:420px;margin:0 auto 28px;line-height:1.7;}
+  .btn-primary{background:var(--accent);color:var(--bg);padding:14px 32px;border-radius:4px;text-decoration:none;font-weight:500;font-size:0.95rem;transition:all 0.2s;display:inline-flex;align-items:center;gap:8px;}
+  .btn-primary:hover{background:var(--white);transform:translateY(-2px);}
+  footer{background:var(--surface);border-top:1px solid var(--border);padding:48px 60px;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;}
+  .footer-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;}
+  .footer-logo span{color:var(--accent);}
+  .footer-text{font-size:0.8rem;color:var(--muted);}
+  .reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--accent);}
+  @media(max-width:900px){nav{padding:16px 24px;}nav ul{gap:20px;}nav ul a{font-size:0.75rem;}h1{font-size:2.4rem;}.blog-grid{grid-template-columns:1fr 1fr;}section{padding:60px 24px;}.page-hero{padding:130px 24px 60px;}}
+  @media(max-width:600px){nav ul{display:none;}.blog-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">IAMSA<span>.</span><div class="logo-sub">Intl. Association of Medical Students in AI</div></a>
+  <ul>
+    <li><a href="/about">About</a></li>
+    <li><a href="/education">Education</a></li>
+    <li><a href="/events">Events</a></li>
+    <li><a href="/research">Research</a></li>
+    <li><a href="/chapters">Chapters</a></li>
+    <li><a href="/news" class="active">News</a></li>
+    <li><a href="/mentorship">Mentorship</a></li>
+    <li><a href="/join" class="nav-cta">Join IAMSA</a></li>
+  </ul>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-glow"></div>
+  <span class="section-tag">News & Blog</span>
+  <h1>Society updates.<br><span class="grad">AI in medicine.</span></h1>
+  <p class="hero-sub">Monthly newsletters, member-written blog posts on AI in clinical practice, press coverage, and IAMSA society updates.</p>
+</div>
+
+<!-- FEATURED POSTS -->
+<section class="surface">
+  <span class="section-tag reveal">Latest</span>
+  <h2 class="reveal">From the IAMSA blog.</h2>
+  <p class="section-sub reveal">Written by medical students and junior doctors. Evidence-based, clinically grounded, practically useful.</p>
+
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <div class="blog-img">🩻</div>
+      <div class="blog-body">
+        <div class="blog-tag">Radiology</div>
+        <h3>What Every Medical Student Should Know About AI in Radiology</h3>
+        <div class="blog-excerpt">NHS trusts are deploying AI chest X-ray tools that flag pneumothoraces and consolidations before a radiologist reviews the image. Here's what that means for you on placement.</div>
+        <div class="blog-date">Coming — June 2026 · IAMSA Editorial</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-img">⚖️</div>
+      <div class="blog-body">
+        <div class="blog-tag">Ethics</div>
+        <h3>The Bias Problem in Clinical AI: Why It Matters for Patient Safety</h3>
+        <div class="blog-excerpt">Pulse oximetry errors in darker-skinned patients foreshadowed a systemic problem now emerging in AI diagnostics. A student-accessible explainer on algorithmic bias in healthcare.</div>
+        <div class="blog-date">Coming — July 2026 · IAMSA Editorial</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-img">🔬</div>
+      <div class="blog-body">
+        <div class="blog-tag">Research</div>
+        <h3>How to Get Your Name on an AI Research Paper as a Medical Student</h3>
+        <div class="blog-excerpt">A practical guide to finding AI research opportunities, understanding authorship criteria, and using the IAMSA research network to build your academic profile.</div>
+        <div class="blog-date">Coming — August 2026 · IAMSA Research Team</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-img">🏥</div>
+      <div class="blog-body">
+        <div class="blog-tag">NHS</div>
+        <h3>Inside the NHS AI Lab: £150M and What It's Actually Building</h3>
+        <div class="blog-excerpt">A breakdown of the NHS AI Lab's portfolio — from imaging AI to sepsis prediction — and what this means for the clinical environment you'll graduate into.</div>
+        <div class="blog-date">Coming — September 2026 · IAMSA Editorial</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-img">💊</div>
+      <div class="blog-body">
+        <div class="blog-tag">Clinical Practice</div>
+        <h3>ChatGPT in the Clinic? What the Evidence Actually Says</h3>
+        <div class="blog-excerpt">LLMs are being used by clinicians despite minimal regulatory clarity. A sober look at the published evidence, the risks, and how to use these tools responsibly.</div>
+        <div class="blog-date">Coming — October 2026 · IAMSA Editorial</div>
+      </div>
+    </div>
+    <div class="blog-card reveal">
+      <div class="blog-img">🌍</div>
+      <div class="blog-body">
+        <div class="blog-tag">Society</div>
+        <h3>IAMSA Is Live: What We're Building and Why It Matters</h3>
+        <div class="blog-excerpt">The founding story of IAMSA — why we started it, what we're building, and how you can get involved at your medical school right now.</div>
+        <div class="blog-date">June 2026 · Maher Nassor, Founder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER ARCHIVE -->
+<section>
+  <span class="section-tag reveal">Newsletter</span>
+  <h2 class="reveal">Monthly newsletter archive.</h2>
+  <p class="section-sub reveal">The IAMSA Monthly — society updates, upcoming events, new research, and resources for members. Free to all members.</p>
+
+  <div class="newsletter-card reveal">
+    <div class="nl-icon">📬</div>
+    <div>
+      <div class="nl-month">IAMSA Monthly — Issue #1 · June 2026</div>
+      <div class="nl-meta">Launch issue · Society update · First webinar announcement · How to found a chapter</div>
+    </div>
+    <a href="/join" class="nl-action">Members Only</a>
+  </div>
+  <div class="newsletter-card reveal" style="opacity:0.5;pointer-events:none;">
+    <div class="nl-icon">📬</div>
+    <div>
+      <div class="nl-month">IAMSA Monthly — Issue #2 · July 2026</div>
+      <div class="nl-meta">Coming July 2026</div>
+    </div>
+    <span class="nl-action" style="cursor:default;">Upcoming</span>
+  </div>
+  <div class="newsletter-card reveal" style="opacity:0.5;pointer-events:none;">
+    <div class="nl-icon">📬</div>
+    <div>
+      <div class="nl-month">IAMSA Monthly — Issue #3 · August 2026</div>
+      <div class="nl-meta">Coming August 2026</div>
+    </div>
+    <span class="nl-action" style="cursor:default;">Upcoming</span>
+  </div>
+
+  <div class="subscribe-box reveal">
+    <h3>Get the IAMSA Monthly in your inbox.</h3>
+    <p>Join IAMSA free to receive the monthly newsletter — research updates, event announcements, and AI in medicine news.</p>
+    <a href="/join" class="btn-primary">Subscribe Free →</a>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section class="surface">
+  <span class="section-tag reveal">Press</span>
+  <h2 class="reveal">Press coverage.</h2>
+  <p class="section-sub reveal">Media coverage of IAMSA and the broader AI in medical education conversation.</p>
+
+  <div class="press-row reveal">
+    <div class="press-logo">Student BMJ</div>
+    <div>
+      <div class="press-title">Why medical students need AI education — now</div>
+      <div class="press-meta">Submission pending · June 2026</div>
+    </div>
+  </div>
+  <div class="press-row reveal">
+    <div class="press-logo">The Medic Portal</div>
+    <div>
+      <div class="press-title">New national society launches to bridge AI gap in medical training</div>
+      <div class="press-meta">Interview pending · June 2026</div>
+    </div>
+  </div>
+  <div class="press-row reveal">
+    <div class="press-logo">NANSIG News</div>
+    <div>
+      <div class="press-title">IAMSA — a student-led AI society with international ambitions</div>
+      <div class="press-meta">Feature pending · June 2026</div>
+    </div>
+  </div>
+  <p style="font-size:0.85rem;color:var(--muted);margin-top:24px;" class="reveal">Press enquiries: <a href="mailto:contact@iamsa.org" style="color:var(--accent);">contact@iamsa.org</a></p>
+</section>
+
+<footer>
+  <div class="footer-logo"><span>IAMSA</span> · International Association of Medical Students in AI</div>
+  <div class="footer-text">Founded 2026 · University of Sunderland · contact@iamsa.org</div>
+</footer>
+<script>
+  const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('visible'),100);observer.unobserve(e.target);}});},{threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
