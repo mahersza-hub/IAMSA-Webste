@@ -823,19 +823,27 @@
 
   /* HERO INNER LAYOUT */
   .hero-inner {
-    display: flex;
-    align-items: center;
-    gap: 60px;
+    display: block;
     width: 100%;
     position: relative;
     z-index: 2;
   }
 
   .hero-content {
-    flex: 1;
-    max-width: 800px;
     position: relative;
     z-index: 2;
+  }
+
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    margin-bottom: 28px;
+  }
+
+  .hero-title-row h1 {
+    margin-bottom: 0;
+    flex: 1;
   }
 
   .hero-logo-wrap {
@@ -846,8 +854,8 @@
   }
 
   .hero-logo-img {
-    height: 280px;
-    width: 280px;
+    height: 420px;
+    width: 420px;
     object-fit: contain;
     opacity: 0.95;
   }
@@ -867,10 +875,14 @@
       min-height: auto;
     }
 
-    .hero-inner {
+    .hero-title-row {
       flex-direction: column-reverse;
-      gap: 28px;
+      gap: 20px;
       text-align: center;
+    }
+
+    .hero-title-row h1 {
+      margin-bottom: 0;
     }
 
     .hero-logo-wrap {
@@ -878,8 +890,8 @@
     }
 
     .hero-logo-img {
-      height: 80px;
-      width: 80px;
+      height: 100px;
+      width: 100px;
     }
 
     .hero-content {
@@ -1027,10 +1039,15 @@
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">IAMSA · Launching June 2026 · UK & International</div>
-      <h1>
-        International Association<br>
-        <span class="line2">of Medical Students in AI</span>
-      </h1>
+      <div class="hero-title-row">
+        <h1>
+          International Association<br>
+          <span class="line2">of Medical Students in AI</span>
+        </h1>
+        <div class="hero-logo-wrap">
+          <img src="logo.png" alt="IAMSA" class="hero-logo-img">
+        </div>
+      </div>
       <p class="hero-sub">
         The first student-led, clinically-grounded AI society for medical students and doctors worldwide. Bridging the gap between artificial intelligence and the future of clinical practice.
       </p>
@@ -1052,9 +1069,6 @@
           <div class="stat-label">Rise in Clinician AI Use in 1 Year</div>
         </div>
       </div>
-    </div>
-    <div class="hero-logo-wrap">
-      <img src="logo.png" alt="IAMSA" class="hero-logo-img">
     </div>
   </div>
 </section>
