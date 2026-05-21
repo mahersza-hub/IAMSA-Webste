@@ -5,1104 +5,94 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>IAMSA — International Association of Medical Students in AI</title>
 <link rel="icon" type="image/png" href="logo.png">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #040812;
-    --surface: #080f1f;
-    --card: #0c1528;
-    --border: #1a2a4a;
-    --accent: #00d4ff;
-    --accent2: #7b4fff;
-    --accent3: #00ff9d;
-    --text: #e8f0ff;
-    --muted: #6a7fa8;
-    --white: #ffffff;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    overflow-x: hidden;
-  }
-
-  /* GRID BACKGROUND */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 20px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(4,8,18,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    letter-spacing: -0.02em;
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .logo span { color: var(--accent); }
-
-  .logo-sub {
-    font-size: 0.5rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 400;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  nav ul {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-  }
-
-  nav ul a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.2s;
-  }
-
-  nav ul a:hover { color: var(--accent); }
-
-  .nav-cta {
-    background: var(--accent);
-    color: var(--bg) !important;
-    padding: 10px 24px;
-    border-radius: 4px;
-    font-weight: 500 !important;
-    transition: all 0.2s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--white) !important;
-    color: var(--bg) !important;
-  }
-
-  /* HERO */
-  .hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding: 120px 60px 80px;
-    overflow: hidden;
-    z-index: 1;
-  }
-
-  .hero-glow {
-    position: absolute;
-    top: -200px; left: -200px;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-glow2 {
-    position: absolute;
-    bottom: -100px; right: -100px;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(123,79,255,0.1) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.2);
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 32px;
-    animation: fadeUp 0.8s ease both;
-  }
-
-  .hero-badge::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(3rem, 6vw, 5.5rem);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-    margin-bottom: 28px;
-    animation: fadeUp 0.8s 0.1s ease both;
-  }
-
-  h1 .line2 {
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    line-height: 1.7;
-    color: var(--muted);
-    max-width: 580px;
-    margin-bottom: 48px;
-    animation: fadeUp 0.8s 0.2s ease both;
-  }
-
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.8s 0.3s ease both;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: var(--bg);
-    padding: 16px 36px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn-primary:hover {
-    background: var(--white);
-    transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(0,212,255,0.25);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    padding: 16px 36px;
-    border-radius: 4px;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 1rem;
-    border: 1px solid var(--border);
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    transform: translateY(-2px);
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 48px;
-    margin-top: 72px;
-    padding-top: 48px;
-    border-top: 1px solid var(--border);
-    animation: fadeUp 0.8s 0.4s ease both;
-  }
-
-  .stat-item {}
-
-  .stat-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800;
-    color: var(--white);
-    letter-spacing: -0.03em;
-  }
-
-  .stat-number span { color: var(--accent); }
-
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-top: 4px;
-  }
-
-  /* SECTIONS */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 100px 60px;
-  }
-
-  .section-tag {
-    display: inline-block;
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-    font-weight: 500;
-  }
-
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
-
-  .section-sub {
-    font-size: 1.05rem;
-    color: var(--muted);
-    line-height: 1.7;
-    max-width: 540px;
-    margin-bottom: 60px;
-  }
-
-  /* MISSION */
-  .mission {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .mission-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .mission-text h2 { margin-bottom: 24px; }
-
-  .mission-text p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--muted);
-    margin-bottom: 20px;
-  }
-
-  .mission-text p strong { color: var(--text); font-weight: 500; }
-
-  .mission-visual {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .mission-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 24px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .mission-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-4px);
-  }
-
-  .mission-card:first-child {
-    grid-column: 1 / -1;
-    background: linear-gradient(135deg, rgba(0,212,255,0.05), rgba(123,79,255,0.05));
-    border-color: rgba(0,212,255,0.2);
-  }
-
-  .card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 12px;
-  }
-
-  .card-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 8px;
-    color: var(--white);
-  }
-
-  .card-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* PILLARS */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 60px;
-  }
-
-  .pillar {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 36px 28px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s;
-  }
-
-  .pillar::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-  }
-
-  .pillar:nth-child(1)::before { background: var(--accent); }
-  .pillar:nth-child(2)::before { background: var(--accent2); }
-  .pillar:nth-child(3)::before { background: var(--accent3); }
-  .pillar:nth-child(4)::before { background: #ff6b9d; }
-
-  .pillar:hover {
-    transform: translateY(-6px);
-    border-color: rgba(0,212,255,0.3);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-  }
-
-  .pillar-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 20px;
-  }
-
-  .pillar-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .pillar-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .pillar-items {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .pillar-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.82rem;
-    color: var(--muted);
-  }
-
-  .pillar-item::before {
-    content: '→';
-    color: var(--accent);
-    font-size: 0.75rem;
-    flex-shrink: 0;
-  }
-
-  /* LAUNCH PLAN */
-  .launch { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-
-  .timeline {
-    position: relative;
-    margin-top: 60px;
-  }
-
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 24px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
-  }
-
-  .timeline-item {
-    display: flex;
-    gap: 40px;
-    margin-bottom: 48px;
-    padding-left: 0;
-    align-items: flex-start;
-  }
-
-  .timeline-marker {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--card);
-    border: 2px solid var(--accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 0.9rem;
-    color: var(--accent);
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .timeline-content {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 32px;
-    flex: 1;
-    transition: border-color 0.2s;
-  }
-
-  .timeline-content:hover { border-color: rgba(0,212,255,0.3); }
-
-  .timeline-date {
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 8px;
-    font-weight: 500;
-  }
-
-  .timeline-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.15rem;
-    color: var(--white);
-    margin-bottom: 12px;
-  }
-
-  .timeline-desc {
-    font-size: 0.9rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .timeline-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 16px;
-  }
-
-  .tag {
-    background: rgba(0,212,255,0.08);
-    border: 1px solid rgba(0,212,255,0.15);
-    color: var(--accent);
-    padding: 4px 12px;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* RECRUITMENT */
-  .recruitment-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 60px;
-  }
-
-  .recruit-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 32px 28px;
-    transition: all 0.3s;
-  }
-
-  .recruit-card:hover {
-    border-color: rgba(0,212,255,0.3);
-    transform: translateY(-4px);
-  }
-
-  .recruit-role {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1.05rem;
-    color: var(--white);
-    margin-bottom: 8px;
-  }
-
-  .recruit-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .recruit-reqs {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .recruit-req {
-    font-size: 0.8rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .recruit-req::before {
-    content: '✓';
-    color: var(--accent3);
-    font-weight: 700;
-  }
-
-  /* WEBSITE PLAN */
-  .website-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 60px;
-  }
-
-  .page-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 28px 24px;
-    transition: all 0.3s;
-  }
-
-  .page-card:hover {
-    border-color: rgba(0,212,255,0.3);
-    transform: translateY(-4px);
-  }
-
-  .page-url {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: 12px;
-    font-weight: 400;
-  }
-
-  .page-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--white);
-    margin-bottom: 10px;
-  }
-
-  .page-desc {
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.6;
-  }
-
-  /* INTERNATIONAL */
-  .international { background: var(--surface); border-top: 1px solid var(--border); }
-
-  .countries-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-top: 60px;
-  }
-
-  .country-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px 20px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-
-  .country-card:hover {
-    border-color: rgba(0,212,255,0.3);
-    transform: translateY(-4px);
-  }
-
-  .country-flag { font-size: 2rem; margin-bottom: 10px; }
-
-  .country-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-
-  .country-schools {
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  /* FOUNDING TEAM */
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-    margin-top: 60px;
-  }
-
-  .team-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 32px 24px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-
-  .team-card:hover {
-    border-color: rgba(0,212,255,0.3);
-    transform: translateY(-4px);
-  }
-
-  .team-avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    margin: 0 auto 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
-    color: var(--bg);
-  }
-
-  .team-name {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 0.95rem;
-    color: var(--white);
-    margin-bottom: 6px;
-  }
-
-  .team-role {
-    font-size: 0.8rem;
-    color: var(--accent);
-    margin-bottom: 8px;
-  }
-
-  .team-school {
-    font-size: 0.78rem;
-    color: var(--muted);
-  }
-
-  /* CTA */
-  .cta-section {
-    text-align: center;
-    padding: 120px 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-section::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-section h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; }
-
-  .cta-section p {
-    font-size: 1.1rem;
-    color: var(--muted);
-    max-width: 500px;
-    margin: 0 auto 48px;
-    line-height: 1.7;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--surface);
-    border-top: 1px solid var(--border);
-    padding: 48px 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.2rem;
-  }
-
-  .footer-logo span { color: var(--accent); }
-
-  .footer-text {
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* SCROLLBAR */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
-
-  /* HERO INNER LAYOUT */
-  .hero-inner {
-    display: block;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-title-row {
-    display: flex;
-    align-items: center;
-    gap: 48px;
-    margin-bottom: 28px;
-  }
-
-  .hero-title-row h1 {
-    margin-bottom: 0;
-    flex: 1;
-  }
-
-  .hero-logo-wrap {
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-logo-img {
-    height: 500px;
-    width: 500px;
-    object-fit: contain;
-    opacity: 0.95;
-  }
-
-  /* MOBILE */
-  @media (max-width: 768px) {
-    nav {
-      padding: 14px 20px;
-    }
-
-    nav ul {
-      display: none;
-    }
-
-    .hero {
-      padding: 90px 20px 52px;
-      min-height: auto;
-    }
-
-    .hero-title-row {
-      flex-direction: column;
-      gap: 24px;
-      text-align: center;
-    }
-
-    .hero-title-row h1 {
-      margin-bottom: 0;
-    }
-
-    .hero-logo-wrap {
-      width: 100%;
-    }
-
-    .hero-logo-img {
-      height: 200px;
-      width: 200px;
-    }
-
-    .hero-content {
-      max-width: 100%;
-      width: 100%;
-    }
-
-    .hero-badge {
-      font-size: 0.65rem;
-      padding: 6px 12px;
-      white-space: normal;
-      text-align: center;
-      justify-content: center;
-    }
-
-    h1 {
-      font-size: clamp(1.9rem, 7.5vw, 2.8rem);
-      word-break: break-word;
-    }
-
-    .hero-sub {
-      font-size: 0.95rem;
-      max-width: 100%;
-    }
-
-    .hero-buttons {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .btn-primary, .btn-secondary {
-      width: 100%;
-      justify-content: center;
-      text-align: center;
-      box-sizing: border-box;
-    }
-
-    .hero-stats {
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 36px;
-      padding-top: 28px;
-      justify-content: center;
-    }
-
-    .stat-item {
-      text-align: center;
-      flex: 0 0 calc(50% - 10px);
-    }
-
-    .stat-number {
-      font-size: 1.7rem;
-    }
-
-    section {
-      padding: 52px 20px;
-    }
-
-    .mission-grid {
-      grid-template-columns: 1fr;
-      gap: 36px;
-    }
-
-    .mission-visual {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .pillars-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .recruitment-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .countries-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .team-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 6vw, 2.2rem);
-    }
-
-    .section-sub {
-      max-width: 100%;
-      font-size: 0.95rem;
-    }
-
-    .cta-section {
-      padding: 72px 20px;
-    }
-
-    footer {
-      flex-direction: column;
-      gap: 10px;
-      text-align: center;
-      padding: 28px 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .mission-visual {
-      grid-template-columns: 1fr;
-    }
-
-    .countries-grid {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .team-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .stat-item {
-      flex: 0 0 calc(50% - 10px);
-    }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="logo">IAMSA<span>.</span><div class="logo-sub">Intl. Association of Medical Students in AI</div></div>
-  <ul>
-    <li><a href="about.html">About</a></li>
-    <li><a href="education.html">Education</a></li>
-    <li><a href="events.html">Events</a></li>
-    <li><a href="research.html">Research</a></li>
-    <li><a href="chapters.html">Chapters</a></li>
-    <li><a href="news.html">News</a></li>
-    <li><a href="mentorship.html">Mentorship</a></li>
-    <li><a href="join.html" class="nav-cta">Join IAMSA</a></li>
-  </ul>
-</nav>
+<header class="site-header">
+  <div class="masthead">
+    <a href="index.html" class="masthead-brand">
+      <img src="logo.png" alt="IAMSA" class="masthead-logo">
+      <div>
+        <div class="masthead-name">IAMSA</div>
+        <div class="masthead-full">International Association of Medical Students in AI</div>
+      </div>
+    </a>
+    <div class="masthead-right"><a href="mailto:contact@iamsa.org">contact@iamsa.org</a></div>
+  </div>
+  <nav class="site-nav">
+    <ul>
+      <li><a href="about.html">About</a></li>
+      <li><a href="education.html">Education</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="chapters.html">Chapters</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="mentorship.html">Mentorship</a></li>
+      <li class="nav-spacer"></li>
+      <li><a href="join.html" class="nav-join">Join IAMSA</a></li>
+    </ul>
+  </nav>
+</header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">IAMSA · Launching June 2026 · UK & International</div>
-      <div class="hero-title-row">
-        <h1>
-          International Association<br>
-          <span class="line2">of Medical Students in AI</span>
-        </h1>
-        <div class="hero-logo-wrap">
-          <img src="logo.png" alt="IAMSA" class="hero-logo-img">
-        </div>
+<!-- HOME HERO -->
+<div class="home-hero">
+  <div class="home-hero-inner">
+    <div class="home-hero-text">
+      <span class="section-label">Established 2026 · Launching June 2026 · UK &amp; International</span>
+      <h1>International Association<br>of Medical Students in AI</h1>
+      <p class="hero-lead">The first student-led, clinically grounded AI society for medical students and doctors worldwide. Bridging the gap between artificial intelligence and the future of clinical practice.</p>
+      <div class="hero-actions">
+        <a href="join.html" class="btn-primary">Become a Regional Lead</a>
+        <a href="about.html" class="btn-secondary">Our Mission</a>
       </div>
-      <p class="hero-sub">
-        The first student-led, clinically-grounded AI society for medical students and doctors worldwide. Bridging the gap between artificial intelligence and the future of clinical practice.
-      </p>
-      <div class="hero-buttons">
-        <a href="#join" class="btn-primary">Become a Regional Lead →</a>
-        <a href="#mission" class="btn-secondary">Our Mission</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <div class="stat-number">45<span>+</span></div>
-          <div class="stat-label">UK Medical Schools</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">75<span>%</span></div>
-          <div class="stat-label">Students — No AI Training</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">78<span>%</span></div>
-          <div class="stat-label">Rise in Clinician AI Use in 1 Year</div>
-        </div>
-      </div>
+    </div>
+    <div class="home-hero-logo">
+      <img src="logo.png" alt="IAMSA">
     </div>
   </div>
-</section>
+  <div class="stat-row">
+    <div class="stat-item">
+      <div class="stat-number">45+</div>
+      <div class="stat-label">UK Medical Schools</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">75%</div>
+      <div class="stat-label">Students — No AI Training</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">78%</div>
+      <div class="stat-label">Rise in Clinician AI Use in 1 Year</div>
+    </div>
+  </div>
+</div>
 
 <!-- MISSION -->
-<section class="mission" id="mission">
-  <div class="mission-grid">
-    <div class="mission-text reveal">
-      <span class="section-tag">Why We Exist</span>
+<section id="mission" class="surface">
+  <div class="two-col">
+    <div>
+      <span class="section-label">Why We Exist</span>
       <h2>Medicine is changing.<br>Students aren't prepared.</h2>
-      <p>Over <strong>75% of medical students receive no formal AI education</strong> in their curriculum. Meanwhile, 2 in 3 physicians now use AI in clinical practice — a figure that doubled in just two years.</p>
-      <p>The NHS has invested over <strong>£150 million through the NHS AI Lab</strong>. Regulatory frameworks are evolving. Clinical AI tools are in wards, radiology suites, and pathology labs — right now.</p>
-      <p>IAMSA exists to close this gap. <strong>Clinically grounded, peer-delivered, internationally connected.</strong> Not a tech club. Not a theory society. A community of future doctors preparing for the medicine they will actually practice.</p>
+      <p style="font-size:1rem;line-height:1.75;margin-bottom:14px;">Over <strong>75% of medical students receive no formal AI education</strong> in their curriculum. Meanwhile, 2 in 3 physicians now use AI in clinical practice — a figure that doubled in just two years.</p>
+      <p style="font-size:1rem;line-height:1.75;margin-bottom:14px;">The NHS has invested over <strong>£150 million through the NHS AI Lab</strong>. Regulatory frameworks are evolving. Clinical AI tools are in wards, radiology suites, and pathology labs — right now.</p>
+      <p style="font-size:1rem;line-height:1.75;">IAMSA exists to close this gap. <strong>Clinically grounded, peer-delivered, internationally connected.</strong> Not a tech club. Not a theory society. A community of future doctors preparing for the medicine they will actually practice.</p>
     </div>
-    <div class="mission-visual reveal">
-      <div class="mission-card">
-        <div class="card-icon">🎯</div>
-        <div class="card-title">Clinically Grounded</div>
-        <div class="card-desc">Every workshop, lecture, and resource is framed around real clinical scenarios — not abstract algorithms.</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div class="card" style="grid-column:1/-1;">
+        <h3>Clinically Grounded</h3>
+        <p>Every workshop, lecture, and resource is framed around real clinical scenarios — not abstract algorithms.</p>
       </div>
-      <div class="mission-card">
-        <div class="card-icon">🌍</div>
-        <div class="card-title">International First</div>
-        <div class="card-desc">Built for global scale from day one. Chapter model across UK, Europe, North America, and beyond.</div>
+      <div class="card">
+        <h3>International First</h3>
+        <p>Chapter model across UK, Europe, North America, and beyond.</p>
       </div>
-      <div class="mission-card">
-        <div class="card-icon">🔬</div>
-        <div class="card-title">Research Connected</div>
-        <div class="card-desc">Members get access to AI research opportunities, collaborations, and publication pathways.</div>
+      <div class="card">
+        <h3>Research Connected</h3>
+        <p>Members access AI research opportunities, collaborations, and publication pathways.</p>
       </div>
-      <div class="mission-card">
-        <div class="card-icon">🏥</div>
-        <div class="card-title">NHS & GMC Aligned</div>
-        <div class="card-desc">Building toward formal recognition as AI literacy becomes a GMC graduate competency.</div>
+      <div class="card">
+        <h3>NHS &amp; GMC Aligned</h3>
+        <p>Building toward formal recognition as AI literacy becomes a GMC graduate competency.</p>
       </div>
     </div>
   </div>
@@ -1110,211 +100,206 @@
 
 <!-- PILLARS -->
 <section id="pillars">
-  <span class="section-tag reveal">What We Do</span>
-  <h2 class="reveal">Four pillars.<br>One mission.</h2>
-  <div class="pillars-grid">
-    <div class="pillar reveal">
+  <span class="section-label">What We Do</span>
+  <h2>Four pillars. One mission.</h2>
+  <div class="grid-4" style="margin-top:28px;">
+    <div class="pillar">
       <div class="pillar-number">01</div>
-      <div class="pillar-title">Teaching Series & Workshops</div>
+      <div class="pillar-title">Teaching Series &amp; Workshops</div>
       <div class="pillar-desc">Nationally coordinated, specialty-specific AI education delivered peer-to-peer at every medical school.</div>
-      <div class="pillar-items">
-        <div class="pillar-item">Specialty AI workshops — surgery, radiology, pathology</div>
-        <div class="pillar-item">Clinical AI ethics and patient safety</div>
-        <div class="pillar-item">Practical AI tools for medical students</div>
-        <div class="pillar-item">International guest lecturer programme</div>
-      </div>
+      <ul class="pillar-items">
+        <li>Specialty AI workshops — surgery, radiology, pathology</li>
+        <li>Clinical AI ethics and patient safety</li>
+        <li>Practical AI tools for medical students</li>
+        <li>International guest lecturer programme</li>
+      </ul>
     </div>
-    <div class="pillar reveal">
+    <div class="pillar">
       <div class="pillar-number">02</div>
       <div class="pillar-title">Research Opportunities</div>
       <div class="pillar-desc">Connecting medical students to AI research projects, collaborations, and publication pathways.</div>
-      <div class="pillar-items">
-        <div class="pillar-item">National student AI research network</div>
-        <div class="pillar-item">Collaborative systematic reviews in AI/medicine</div>
-        <div class="pillar-item">Industry research partnership programme</div>
-        <div class="pillar-item">Annual student research competition</div>
-        <div class="pillar-item">Publication mentorship pathway</div>
-      </div>
+      <ul class="pillar-items">
+        <li>National student AI research network</li>
+        <li>Collaborative systematic reviews in AI/medicine</li>
+        <li>Industry research partnership programme</li>
+        <li>Annual student research competition</li>
+        <li>Publication mentorship pathway</li>
+      </ul>
     </div>
-    <div class="pillar reveal">
+    <div class="pillar">
       <div class="pillar-number">03</div>
       <div class="pillar-title">Conferences</div>
       <div class="pillar-desc">Annual national conference and international symposium — CPD accredited, student and clinician facing.</div>
-      <div class="pillar-items">
-        <div class="pillar-item">Annual UK National IAMSA Conference</div>
-        <div class="pillar-item">International Medical AI Symposium</div>
-        <div class="pillar-item">CPD accreditation for all events</div>
-        <div class="pillar-item">Abstract submission and oral presentations</div>
-        <div class="pillar-item">Industry exhibition and networking</div>
-      </div>
+      <ul class="pillar-items">
+        <li>Annual UK National IAMSA Conference</li>
+        <li>International Medical AI Symposium</li>
+        <li>CPD accreditation for all events</li>
+        <li>Abstract submission and oral presentations</li>
+        <li>Industry exhibition and networking</li>
+      </ul>
     </div>
-    <div class="pillar reveal">
+    <div class="pillar">
       <div class="pillar-number">04</div>
       <div class="pillar-title">Mentorship</div>
       <div class="pillar-desc">Connecting students to AI researchers, clinical informaticians, and industry professionals.</div>
-      <div class="pillar-items">
-        <div class="pillar-item">1:1 mentor matching programme</div>
-        <div class="pillar-item">Clinician-researcher mentor network</div>
-        <div class="pillar-item">Industry career pathway guidance</div>
-        <div class="pillar-item">Fellowship and grant signposting</div>
-        <div class="pillar-item">International mentorship exchange</div>
-      </div>
+      <ul class="pillar-items">
+        <li>1:1 mentor matching programme</li>
+        <li>Clinician-researcher mentor network</li>
+        <li>Industry career pathway guidance</li>
+        <li>Fellowship and grant signposting</li>
+        <li>International mentorship exchange</li>
+      </ul>
     </div>
   </div>
 </section>
-
 
 <!-- RECRUITMENT -->
-<section id="recruitment">
-  <span class="section-tag reveal">Join the Team</span>
-  <h2 class="reveal">We are recruiting<br>regional leads now.</h2>
-  <p class="section-sub reveal">We need one regional lead per UK medical school — and international representatives. This is a role that shapes the society from day one.</p>
-
+<section id="recruitment" class="surface">
+  <span class="section-label">Join the Team</span>
+  <h2>We are recruiting regional leads now.</h2>
+  <p class="section-intro">We need one regional lead per UK medical school — and international representatives. This is a role that shapes the society from day one.</p>
   <div class="recruitment-grid">
-    <div class="recruit-card reveal">
+    <div class="recruit-card">
       <div class="recruit-role">🇬🇧 UK Regional Lead</div>
       <div class="recruit-desc">One per UK medical school. You are the IAMSA presence at your institution — organising local events, recruiting members, and connecting your school to the national network.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">Medical student at a UK medical school</div>
-        <div class="recruit-req">Interest in AI and clinical technology</div>
-        <div class="recruit-req">Commitment of 2–4 hours per month</div>
-        <div class="recruit-req">Named on all IAMSA communications</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>Medical student at a UK medical school</li>
+        <li>Interest in AI and clinical technology</li>
+        <li>Commitment of 2–4 hours per month</li>
+        <li>Named on all IAMSA communications</li>
+      </ul>
     </div>
-    <div class="recruit-card reveal">
+    <div class="recruit-card">
       <div class="recruit-role">🌍 International Representative</div>
       <div class="recruit-desc">Founding international representatives in Ireland, USA, Canada, Australia, and Europe. You establish IAMSA's presence in your country and build the local chapter network.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">Medical student or resident doctor</div>
-        <div class="recruit-req">Ability to recruit locally</div>
-        <div class="recruit-req">Named representative status</div>
-        <div class="recruit-req">Direct line to IAMSA national committee</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>Medical student or resident doctor</li>
+        <li>Ability to recruit locally</li>
+        <li>Named representative status</li>
+        <li>Direct line to IAMSA national committee</li>
+      </ul>
     </div>
-    <div class="recruit-card reveal">
+    <div class="recruit-card">
       <div class="recruit-role">⚙️ National Committee</div>
       <div class="recruit-desc">Core national committee roles: President, Vice President, Research Lead, Events Lead, Education Lead, Communications Lead, and International Liaison.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">UK medical student or resident doctor</div>
-        <div class="recruit-req">Leadership experience preferred</div>
-        <div class="recruit-req">Commitment of 4–8 hours per month</div>
-        <div class="recruit-req">Named committee member on all outputs</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>UK medical student or resident doctor</li>
+        <li>Leadership experience preferred</li>
+        <li>Commitment of 4–8 hours per month</li>
+        <li>Named committee member on all outputs</li>
+      </ul>
     </div>
-    <div class="recruit-card reveal">
+    <div class="recruit-card">
       <div class="recruit-role">🔬 Research Working Group</div>
       <div class="recruit-desc">Lead IAMSA's research agenda — coordinating the national AI in medicine needs assessment, collaborative publications, and research partnerships with academic institutions.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">Research experience or strong interest</div>
-        <div class="recruit-req">Systematic review or primary research</div>
-        <div class="recruit-req">Named on all IAMSA publications</div>
-        <div class="recruit-req">Direct collaboration with IAMSA advisors</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>Research experience or strong interest</li>
+        <li>Systematic review or primary research</li>
+        <li>Named on all IAMSA publications</li>
+        <li>Direct collaboration with IAMSA advisors</li>
+      </ul>
     </div>
-    <div class="recruit-card reveal">
-      <div class="recruit-role">📢 Communications & Media</div>
+    <div class="recruit-card">
+      <div class="recruit-role">📢 Communications &amp; Media</div>
       <div class="recruit-desc">Build IAMSA's national and international presence — social media, newsletter, press releases, and media strategy. Shape how the world sees this society.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">Medical student or resident doctor</div>
-        <div class="recruit-req">Social media or communications experience</div>
-        <div class="recruit-req">Creative and digitally literate</div>
-        <div class="recruit-req">Flexible hours — output based</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>Medical student or resident doctor</li>
+        <li>Social media or communications experience</li>
+        <li>Creative and digitally literate</li>
+        <li>Flexible hours — output based</li>
+      </ul>
     </div>
-    <div class="recruit-card reveal">
+    <div class="recruit-card">
       <div class="recruit-role">🏥 Clinical Advisory Panel</div>
       <div class="recruit-desc">Senior clinicians, AI researchers, and clinical informaticians who advise IAMSA's educational content, endorse the society, and mentor student members.</div>
-      <div class="recruit-reqs">
-        <div class="recruit-req">Consultant, registrar, or researcher</div>
-        <div class="recruit-req">Active interest in clinical AI</div>
-        <div class="recruit-req">Named advisor on IAMSA platform</div>
-        <div class="recruit-req">Invited to speak at IAMSA events</div>
-      </div>
+      <ul class="recruit-reqs">
+        <li>Consultant, registrar, or researcher</li>
+        <li>Active interest in clinical AI</li>
+        <li>Named advisor on IAMSA platform</li>
+        <li>Invited to speak at IAMSA events</li>
+      </ul>
     </div>
   </div>
 </section>
 
-
 <!-- INTERNATIONAL -->
-<section class="international" id="international">
-  <span class="section-tag reveal">Global Expansion</span>
-  <h2 class="reveal">International from<br>day one.</h2>
-  <p class="section-sub reveal">Phase 1 launches with pilot chapters in multiple countries simultaneously with the UK. Phase 2 targets full international coverage by 2027.</p>
-
+<section id="international">
+  <span class="section-label">Global Expansion</span>
+  <h2>International from day one.</h2>
+  <p class="section-intro">Phase 1 launches with pilot chapters in multiple countries simultaneously with the UK. Phase 2 targets full international coverage by 2027.</p>
   <div class="countries-grid">
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇬🇧</div>
       <div class="country-name">United Kingdom</div>
       <div class="country-schools">33 medical schools — full coverage target</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇮🇪</div>
       <div class="country-name">Ireland</div>
       <div class="country-schools">6 medical schools — pilot launch June 2026</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇺🇸</div>
       <div class="country-name">United States</div>
       <div class="country-schools">155+ medical schools — pilot Q4 2026</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇦🇺</div>
       <div class="country-name">Australia</div>
       <div class="country-schools">22 medical schools — pilot Q4 2026</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇨🇦</div>
       <div class="country-name">Canada</div>
       <div class="country-schools">17 medical schools — 2027 expansion</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇩🇪</div>
       <div class="country-name">Germany</div>
       <div class="country-schools">39 medical schools — 2027 expansion</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🇸🇬</div>
       <div class="country-name">Singapore</div>
       <div class="country-schools">3 medical schools — 2027 expansion</div>
     </div>
-    <div class="country-card reveal">
+    <div class="country-card">
       <div class="country-flag">🌍</div>
-      <div class="country-name">Africa & Middle East</div>
+      <div class="country-name">Africa &amp; Middle East</div>
       <div class="country-schools">2027 expansion</div>
     </div>
   </div>
 </section>
 
 <!-- CTA -->
-<section class="cta-section" id="join">
-  <span class="section-tag reveal">Get Involved</span>
-  <div class="hero-buttons" style="justify-content: center;">
-    <a href="join.html" class="btn-primary">Join IAMSA →</a>
+<section class="surface" id="join" style="text-align:center;">
+  <span class="section-label">Get Involved</span>
+  <h2 style="margin-bottom:24px;">Ready to join IAMSA?</h2>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+    <a href="join.html" class="btn-primary">Join IAMSA</a>
     <a href="chapters.html" class="btn-secondary">Find Your Chapter</a>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo" style="display:flex;align-items:center;gap:8px;"><img src="logo.png" alt="IAMSA logo" style="height:32px;width:32px;object-fit:contain;"><span>IAMSA</span> · International Association of Medical Students in AI</div>
-  <div class="footer-text">International Association of Medical Students in AI · Founded 2026 · Launching June 2026</div>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">IAMSA</div>
+      <div class="footer-sub">International Association of Medical Students in AI<br>Founded 2026 · Launching June 2026</div>
+    </div>
+    <div class="footer-links">
+      <a href="about.html">About</a>
+      <a href="education.html">Education</a>
+      <a href="events.html">Events</a>
+      <a href="research.html">Research</a>
+      <a href="chapters.html">Chapters</a>
+      <a href="news.html">News</a>
+      <a href="mentorship.html">Mentorship</a>
+      <a href="join.html">Join IAMSA</a>
+    </div>
+    <div class="footer-contact"><a href="mailto:contact@iamsa.org">contact@iamsa.org</a></div>
+  </div>
 </footer>
-
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => { entry.target.classList.add('visible'); }, 100);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  document.querySelectorAll('.pillars-grid .pillar, .recruitment-grid .recruit-card, .website-grid .page-card, .countries-grid .country-card, .timeline-item').forEach((el, i) => {
-    el.style.transitionDelay = (i % 4) * 80 + 'ms';
-  });
-</script>
-
 
 </body>
 </html>
