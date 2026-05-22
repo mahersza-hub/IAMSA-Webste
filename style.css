@@ -136,13 +136,8 @@ section { padding: 56px 60px; border-top: 1px solid var(--rule); }
   background: var(--paper);
   border-bottom: 1px solid var(--rule);
 }
-.home-hero-inner {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-  justify-content: space-between;
-}
-.home-hero-text { flex: 1; }
+.home-hero-inner { max-width: 640px; }
+.home-hero-text {}
 .home-hero-logo { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
 .home-hero-logo img { width: 600px; height: 600px; object-fit: contain; }
 
