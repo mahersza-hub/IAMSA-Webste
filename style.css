@@ -78,7 +78,7 @@ li { line-height: 1.65; }
 }
 .masthead-brand:hover { color: inherit; }
 .masthead-right { grid-column: 3; text-align: right; font-size: 0.82rem; color: var(--muted); }
-.masthead-logo { height: 64px; width: 64px; object-fit: contain; }
+.masthead-logo { height: 96px; width: 96px; object-fit: contain; }
 .masthead-name {
   font-family: var(--serif);
   font-size: 1.35rem;
