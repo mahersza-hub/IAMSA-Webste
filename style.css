@@ -321,7 +321,7 @@ section { padding: 56px 60px; border-top: 1px solid var(--rule); }
 .team-card { background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; padding: 22px; }
 .surface .team-card { background: var(--paper); }
 .team-avatar {
-  width: 96px; height: 96px; border-radius: 50%; background: var(--navy);
+  width: 110px; height: 110px; border-radius: 50%; background: var(--navy);
   display: flex; align-items: center; justify-content: center;
   font-family: var(--serif); font-weight: 700; font-size: 1.3rem;
   color: var(--paper); margin-bottom: 12px; overflow: hidden;
