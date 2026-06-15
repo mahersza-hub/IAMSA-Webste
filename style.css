@@ -622,7 +622,7 @@ footer { background: var(--ink); color: var(--paper); padding: 36px 60px; }
 @media (max-width: 768px) {
   .masthead { padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
   .masthead-right { display: none; }
-  .masthead-logo { height: 60px; width: 60px; padding: 6px; }
+  .masthead-logo { height: 48px; width: 48px; padding: 0; }
   .nav-toggle { display: block; }
 
   .site-nav { display: none; border-top: 1px solid var(--rule); }
