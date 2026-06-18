@@ -84,8 +84,6 @@ li { line-height: 1.65; }
   object-fit: contain;
   background: #fff;
   border-radius: 50%;
-  padding: 4px;
-  box-sizing: content-box;
 }
 .masthead-name {
   font-family: var(--serif);
