@@ -43,32 +43,42 @@
   <p style="font-size:1.05rem;color:var(--muted);line-height:1.7;max-width:580px;margin-top:6px;">Sign up as a member or apply to be a regional lead at your medical school. All roles are open now.</p>
 </div>
 
-<!-- MEMBER SIGN-UP -->
-<section class="surface" id="tab-member">
-  <span class="section-label">Member Sign-Up</span>
-  <h2>Join IAMSA as a member.</h2>
-  <p class="section-intro">Free for all medical students and resident doctors. Reviewed within 5 working days.</p>
-  <div style="max-width:760px;margin:24px auto 0;">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0Ez_AAnSOoAODpcnQEp1rWcf6AChGCyMgNWw3cpuYAh89Pg/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" style="display:block;border:none;">Loading…</iframe>
-  </div>
-</section>
+<!-- FORMS -->
+<section class="surface">
+  <span class="section-label">Apply Now</span>
+  <h2>Choose your path.</h2>
+  <p class="section-intro">Select the application that fits you. All forms are reviewed within 5 working days.</p>
 
-<!-- REGIONAL LEAD -->
-<section id="tab-lead">
-  <span class="section-label">Regional Lead Application</span>
-  <h2>Apply to be a Regional Lead.</h2>
-  <p class="section-intro">One regional lead per UK medical school. You are the IAMSA presence at your institution — organising local events, recruiting members, and connecting your school to the national network. Commitment: 2–4 hours per month.</p>
-  <div style="max-width:760px;margin:24px auto 0;">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDJuV7-1mMMP80_9EZOgZRkxvojX87tPy4L0xjI8bWcVnFJQ/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" style="display:block;border:none;">Loading…</iframe>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('member', this)">Member Sign-Up</button>
+    <button class="tab-btn" onclick="showTab('lead', this)">Regional Lead</button>
+    <button class="tab-btn" onclick="showTab('international', this)">International Rep</button>
   </div>
-</section>
 
-<!-- INTERNATIONAL REP -->
-<section id="tab-international">
-  <span class="section-label">International Representative</span>
-  <h2>Apply as an International Rep.</h2>
-  <p class="section-intro">Establish IAMSA's presence in your country — Ireland, USA, Canada, Australia, Germany, Singapore, or propose a new country. Build the local chapter network.</p>
-  <p style="font-weight:600;color:var(--navy);margin-top:8px;">Applications opening soon.</p>
+  <div class="tab-pane active" id="tab-member">
+    <div class="form-wrap">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc0Ez_AAnSOoAODpcnQEp1rWcf6AChGCyMgNWw3cpuYAh89Pg/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="tab-lead">
+    <div class="info-box">
+      <h3>UK Regional Lead Application</h3>
+      <p>One regional lead per UK medical school. You are the IAMSA presence at your institution — organising local events, recruiting members, and connecting your school to the national network. Commitment: 2–4 hours per month.</p>
+    </div>
+    <div style="max-width:760px;margin:24px auto 0;">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDJuV7-1mMMP80_9EZOgZRkxvojX87tPy4L0xjI8bWcVnFJQ/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0" loading="lazy" style="display:block;border:none;">Loading…</iframe>
+    </div>
+  </div>
+
+
+  <div class="tab-pane" id="tab-international">
+    <div class="info-box">
+      <h3>International Representative Application</h3>
+      <p>Establish IAMSA's presence in your country — Ireland, USA, Canada, Australia, Germany, Singapore, or propose a new country. Build the local chapter network. Named international representative on all IAMSA communications.</p>
+      <p style="margin-top:14px;font-weight:600;color:var(--navy);">Applications opening soon.</p>
+    </div>
+  </div>
 </section>
 
 <!-- WHY JOIN -->
@@ -197,6 +207,24 @@
   </div>
 </footer>
 
+<script>
+  function showTab(name, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  // Auto-activate tab from URL hash (e.g. join.html#tab-lead)
+  (function () {
+    const hash = location.hash.replace('#', '');
+    if (hash) {
+      const pane = document.getElementById(hash);
+      const btn = document.querySelector('[onclick*="showTab(\'' + hash.replace('tab-', '') + '\'"]');
+      if (pane) showTab(hash.replace('tab-', ''), btn);
+    }
+  })();
+</script>
 
 <script src="main.js"></script>
 </body>
