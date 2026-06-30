@@ -55,29 +55,31 @@
     <button class="tab-btn" onclick="showTab('international', this)">International Rep</button>
   </div>
 
-  <div class="tab-pane" id="tab-member">
-    <div class="form-wrap">
-      <iframe data-src="https://docs.google.com/forms/d/e/1FAIpQLSc0Ez_AAnSOoAODpcnQEp1rWcf6AChGCyMgNWw3cpuYAh89Pg/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+  <div class="tab-panes">
+    <div class="tab-pane" id="tab-member">
+      <div class="form-wrap">
+        <iframe data-src="https://docs.google.com/forms/d/e/1FAIpQLSc0Ez_AAnSOoAODpcnQEp1rWcf6AChGCyMgNWw3cpuYAh89Pg/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+      </div>
     </div>
-  </div>
 
-  <div class="tab-pane active" id="tab-lead">
-    <div class="info-box">
-      <h3>UK Regional Lead Application</h3>
-      <p>One regional lead per UK medical school. You are the IAMSA presence at your institution — organising local events, recruiting members, and connecting your school to the national network. Commitment: 2–4 hours per month.</p>
+    <div class="tab-pane active" id="tab-lead">
+      <div class="info-box">
+        <h3>UK Regional Lead Application</h3>
+        <p>One regional lead per UK medical school. You are the IAMSA presence at your institution — organising local events, recruiting members, and connecting your school to the national network. Commitment: 2–4 hours per month.</p>
+      </div>
+      <div class="form-wrap">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeDJuV7-1mMMP80_9EZOgZRkxvojX87tPy4L0xjI8bWcVnFJQ/viewform?embedded=true" width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+      </div>
     </div>
-    <div class="form-wrap">
-      <iframe data-src="https://docs.google.com/forms/d/e/1FAIpQLSeDJuV7-1mMMP80_9EZOgZRkxvojX87tPy4L0xjI8bWcVnFJQ/viewform?embedded=true" width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
-    </div>
-  </div>
 
-  <div class="tab-pane" id="tab-international">
-    <div class="info-box">
-      <h3>International Representative Application</h3>
-      <p>Establish IAMSA's presence in your country — Ireland, USA, Canada, Australia, Germany, Singapore, or propose a new country. Build the local chapter network. Named international representative on all IAMSA communications.</p>
-    </div>
-    <div class="form-wrap">
-      <iframe data-src="https://docs.google.com/forms/d/e/1FAIpQLSdF5RLRqpx00ZdZ-wVadHl4OiEM21tbkPn_0imP8C27BXSGdA/viewform?embedded=true" width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+    <div class="tab-pane" id="tab-international">
+      <div class="info-box">
+        <h3>International Representative Application</h3>
+        <p>Establish IAMSA's presence in your country — Ireland, USA, Canada, Australia, Germany, Singapore, or propose a new country. Build the local chapter network. Named international representative on all IAMSA communications.</p>
+      </div>
+      <div class="form-wrap">
+        <iframe data-src="https://docs.google.com/forms/d/e/1FAIpQLSdF5RLRqpx00ZdZ-wVadHl4OiEM21tbkPn_0imP8C27BXSGdA/viewform?embedded=true" width="100%" height="1800" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;">Loading…</iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -209,31 +211,20 @@
 </footer>
 
 <script>
-  function loadIframe(pane) {
-    var iframe = pane.querySelector('iframe[data-src]');
-    if (iframe) {
-      var src = iframe.getAttribute('data-src');
-      iframe.removeAttribute('data-src');
-      // Defer src assignment so the browser paints display:block before the
-      // iframe measures its container — without this Google Forms sees a
-      // hidden container and collapses to a "Fill out form" button.
-      setTimeout(function() { iframe.src = src; }, 50);
-    }
-  }
-
   function showTab(name, btn) {
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
     var pane = document.getElementById('tab-' + name);
     pane.classList.add('active');
     if (btn) btn.classList.add('active');
-    loadIframe(pane);
+    // First activation: swap data-src to src. clip-path keeps the iframe
+    // in the layout so it already has real dimensions — no timing tricks needed.
+    var iframe = pane.querySelector('iframe[data-src]');
+    if (iframe) {
+      iframe.src = iframe.getAttribute('data-src');
+      iframe.removeAttribute('data-src');
+    }
   }
-
-  // Init default tab only after the page is fully painted
-  window.addEventListener('load', function() {
-    document.querySelectorAll('.tab-pane.active').forEach(loadIframe);
-  });
 
   // Auto-activate tab from URL hash (e.g. join.html#tab-lead)
   (function () {

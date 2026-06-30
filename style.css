@@ -590,8 +590,9 @@ section { padding: 56px 60px; border-top: 1px solid var(--rule); }
 .tab-btn:last-child { border-right: none; }
 .tab-btn.active { background: var(--navy); color: var(--paper); }
 .tab-btn:hover:not(.active) { color: var(--navy); background: var(--aside); }
-.tab-pane { display: none; }
-.tab-pane.active { display: block; }
+.tab-panes { position: relative; }
+.tab-pane { display: block; position: absolute; left: 0; top: 0; width: 100%; clip-path: inset(0 0 100% 0); pointer-events: none; }
+.tab-pane.active { position: relative; clip-path: none; pointer-events: auto; }
 
 .form-wrap { background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; overflow: hidden; }
 .info-box { background: var(--paper); border: 1px solid var(--rule); border-radius: 2px; padding: 22px; margin-bottom: 18px; }
