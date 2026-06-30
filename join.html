@@ -212,8 +212,12 @@
   function loadIframe(pane) {
     var iframe = pane.querySelector('iframe[data-src]');
     if (iframe) {
-      iframe.src = iframe.getAttribute('data-src');
+      var src = iframe.getAttribute('data-src');
       iframe.removeAttribute('data-src');
+      // Defer src assignment so the browser paints display:block before the
+      // iframe measures its container — without this Google Forms sees a
+      // hidden container and collapses to a "Fill out form" button.
+      setTimeout(function() { iframe.src = src; }, 50);
     }
   }
 
@@ -226,8 +230,10 @@
     loadIframe(pane);
   }
 
-  // Init: lazy-load whichever tab is active on page load
-  document.querySelectorAll('.tab-pane.active').forEach(loadIframe);
+  // Init default tab only after the page is fully painted
+  window.addEventListener('load', function() {
+    document.querySelectorAll('.tab-pane.active').forEach(loadIframe);
+  });
 
   // Auto-activate tab from URL hash (e.g. join.html#tab-lead)
   (function () {
