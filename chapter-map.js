@@ -93,7 +93,7 @@
       elStatus.textContent = '● Chapter active';
       elStatus.className = 'mp-status is-active';
       elCta.textContent = 'Join this chapter';
-      elCta.setAttribute('href', 'join.html');
+      elCta.setAttribute('href', 'join.html#tab-member');
     } else {
       elLead.hidden = true;
       elStatus.textContent = '● Regional lead wanted';
